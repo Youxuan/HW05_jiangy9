@@ -2,13 +2,18 @@
 #include <list>
 
 MatrixGraph::MatrixGraph(unsigned num_nodes){
-	for(int i=0; i < num_nodes; i++){
+	M.resize(num_nodes);
+	for(int i=0; i < num_nodes; i++){ 
+		M[i].resize(num_nodes);
 		for(int j=0; j < num_nodes; j++){
 			M[i][j] = 0;
 			M[j][i] = 0;
 		}
 	}
 	num_edges = 0;
+}
+
+MatrixGraph::~MatrixGraph(){
 }
 
 void MatrixGraph::addEdge(NodeID u, NodeID v, EdgeWeight weight){
@@ -24,7 +29,7 @@ EdgeWeight MatrixGraph::weight(NodeID u, NodeID v) const{
 std::list<NWPair> MatrixGraph::getAdj(NodeID u) const{
 	EList* list = new EList();
 	NWPair pair;
-	for(int i = 0; i < M[u].size(); i++){
+	for(int i = 0; i < M[u].size(); i++){ 
 		if(M[u][i]!=0){
 			pair.first = i;
 			pair.second = M[u][i];

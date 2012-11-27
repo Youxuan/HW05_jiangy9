@@ -23,7 +23,7 @@ class ListGraph : public Graph {
   virtual unsigned numEdges() const;
 
  private:
-  ListGraph() {;}       //What does this create?
+  ListGraph() {;} 
 
   std::vector<EList> edgeList;
   int num_edges;
