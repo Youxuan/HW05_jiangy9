@@ -2,6 +2,7 @@
 #include <list>
 
 ListGraph::ListGraph(int numNodes){
+	//edgeList.resize(numNodes);      Why did you say it is automatically initialized?        How about num_edges?
 	EList* list = new EList();
 	for(int j=0;j<numNodes;j++)
 		(*list).push_back(NWPair(0,0));
@@ -41,6 +42,15 @@ EdgeWeight ListGraph::weight(NodeID u, NodeID v) const{
 	}
 	
 	return result;
+	/*
+	EList::const_iterator it;           // begin() and front() ???
+	for(it = edgeList[u].begin(); it != edgeList[u].end; it++){         // how do you do it++? Iterator works as pointer?
+		NWPair pair = (*it);
+		if(pair.first == v)
+			return pair.second;
+	}
+	return 0.0;
+	*/
 }
 
 std::list<NWPair> ListGraph::getAdj(NodeID u) const{
@@ -55,6 +65,7 @@ std::list<NWPair> ListGraph::getAdj(NodeID u) const{
 		}
 	}
 	return *list;
+	//return edgeList[u];              why? But why?
 }
 
 unsigned ListGraph::degree(NodeID u) const{
@@ -69,6 +80,7 @@ unsigned ListGraph::degree(NodeID u) const{
 		}
 	}
 	return count;
+
 }
 
 unsigned ListGraph::size() const{
