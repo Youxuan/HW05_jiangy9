@@ -10,18 +10,30 @@ ListGraph::~ListGraph(){
 }
 
 void ListGraph::addEdge(NodeID u, NodeID v, EdgeWeight weight){
-	EList::const_iterator it;          
+	EList::const_iterator it;
+	bool count = false;
 	for(it = edgeList[u].begin(); it != edgeList[u].end(); it++){         
 		NWPair pair = (*it);
 		if(pair.first == v)
-			pair.second = weight;
+			count = true;
+	}
+	if(count==false){
+		NWPair pair (v, weight);
+		edgeList[u].push_back(pair);
+		num_edges++;
 	}
     
+	count = false;
 	for(it = edgeList[v].begin(); it != edgeList[v].end(); it++){         
 		NWPair pair = (*it);
 		if(pair.first == u)
-			pair.second = weight;
+			count = true;
 	}
+	if(count==false){
+		NWPair pair (u, weight);
+		edgeList[v].push_back(pair);
+	}
+
 	
 }
 
@@ -37,19 +49,11 @@ EdgeWeight ListGraph::weight(NodeID u, NodeID v) const{
 }
 
 std::list<NWPair> ListGraph::getAdj(NodeID u) const{
-	return edgeList[u];         
+	return edgeList[u];
 }
 
 unsigned ListGraph::degree(NodeID u) const{
-	int count = 0;
-	EList::const_iterator it;          
-	for(it = edgeList[u].begin(); it != edgeList[u].end(); it++){         
-		NWPair pair = (*it);
-		if(pair.second != 0)
-			count += 1;
-	}
-	return count;
-
+	return edgeList[u].size();
 }
 
 unsigned ListGraph::size() const{
