@@ -50,7 +50,7 @@ class Graph {
   virtual EdgeWeight weight(NodeID u, NodeID v) const = 0;
 
   /*
-   * Return a list of NodeID/EdgeWeight pairs describing the nodes adjacent to edge w.
+   * Return a list of NodeID/EdgeWeight pairs describing the nodes adjacent to node u.
    *
    * Preconditions: u is a legal label.
    */
