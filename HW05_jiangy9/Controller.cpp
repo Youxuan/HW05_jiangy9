@@ -111,7 +111,7 @@ int main(int argc, char** argv) {
   Tester T2(false);
   T2.test_all();
 
-	cin >> n;
+	//cin >> n;
 
   /********************************
    * The following section is commented out so you can test your graph code
