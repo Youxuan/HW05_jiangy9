@@ -66,13 +66,16 @@ void testSingleTSP(StarbucksMap& SB, int size, bool use_matrix) {
   actual += G->weight(p.first[size-1], p.first[0]);
 
   cout << "Best cycle length: " << p.second << " ";
+  cout << "actual: " << actual << endl;
   if (fabs(p.second - actual) > 0.00000001)
     cout << "(ERROR -- the length returned is not equal to the actual length)";
   else
     cout << "(Path length matches)" << endl;
   cout << "\n\n";
-  for (int i=0; i < size; i++)
-    cout << R[p.first[i]] << "\n";
+  for (int i=0; i < size; i++){
+	  cout << R[p.first[i]] << "\n";
+  }
+  
   deleteStarbucksGraph(G, use_matrix);
 }
 
@@ -129,6 +132,9 @@ int main(int argc, char** argv) {
   testSingleTSP(SB, 5, false);
 
   pair<int,int> p = testSpeedTSP(SB, 60, true);
+
+  int x;
+  cin >> x;
 
   return 0;
 }
